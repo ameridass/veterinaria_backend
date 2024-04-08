@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'veterinaria.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'veterinaria_udv',
+        'USER': 'asosa',
+        'PASSWORD': 'm=OHs}\'1>34T',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
