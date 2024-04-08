@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Propietario
+from .serializers import PropietarioSerializer
 
-# Create your views here.
+
+class PropietarioViewSet(viewsets.ModelViewSet):
+    queryset = Propietario.objects.all()
+    serializer_class = PropietarioSerializer
