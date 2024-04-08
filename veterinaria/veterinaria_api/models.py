@@ -12,7 +12,7 @@ class Propietario(models.Model):
     direccion = models.CharField(max_length=255)
     telefono = models.CharField(max_length=255)
     email = models.EmailField()
-    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.nombre
