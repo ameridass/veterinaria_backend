@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Propietario, Paciente, Cita
+from .models import Propietario, Paciente, Cita, Consulta
 
 
 class PropietarioSerializer(serializers.ModelSerializer):
@@ -18,3 +18,10 @@ class CitaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cita
         fields = '__all__'
+
+
+class ConsultaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Consulta
+        fields = '__all__'
+
