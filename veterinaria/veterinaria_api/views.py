@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Propietario, Paciente, Cita
-from .serializers import PropietarioSerializer, PacienteSerializer, CitaSerializer
+from .models import Propietario, Paciente, Cita, Consulta
+from .serializers import PropietarioSerializer, PacienteSerializer, CitaSerializer, ConsultaSerializer
 
 
 class PropietarioViewSet(viewsets.ModelViewSet):
@@ -16,3 +16,9 @@ class PacienteViewSet(viewsets.ModelViewSet):
 class CitaViewSet(viewsets.ModelViewSet):
     queryset = Cita.objects.all()
     serializer_class = CitaSerializer
+
+
+class ConsultaViewSet(viewsets.ModelViewSet):
+    queryset = Consulta.objects.all()
+    serializer_class = ConsultaSerializer
+
