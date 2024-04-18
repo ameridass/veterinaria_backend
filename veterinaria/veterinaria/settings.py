@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Define STATIC_ROOT para indicar dónde se recolectarán los archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Application definition
 
@@ -38,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', # Django REST framework
+    'veterinaria_api', # App
+    'drf_yasg', # Swagger
 ]
 
 MIDDLEWARE = [
@@ -77,11 +85,11 @@ WSGI_APPLICATION = 'veterinaria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'veterinaria_udv',
-        'USER': 'asosa',
-        'PASSWORD': 'm=OHs}\'1>34T',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 

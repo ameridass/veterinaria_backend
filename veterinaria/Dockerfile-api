@@ -1,0 +1,28 @@
+FROM python:3.8-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    iputils-ping \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+copy requirements.txt .
+
+copy ./wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY veterinaria .
+
+#RUN python manage.py migrate
+#RUN python manage.py collectstatic --noinput
+
+EXPOSE 8000
+
+ENTRYPOINT ["/wait-for-it.sh", "db:5432", "--timeout=300", "--strict", "--"]
+
+CMD ["/bin/bash", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py loaddata fixture.json && gunicorn -b 0.0.0.0:8000 veterinaria.wsgi:application"]
