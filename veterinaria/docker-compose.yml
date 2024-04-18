@@ -16,8 +16,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   api:
-    build: .
-    command: gunicorn -b 0.0.0.0:8000 veterinaria.wsgi:application
+    container_name: veterinaria_api
+    build:
+      context: .
+      dockerfile: Dockerfile-api
     volumes:
       - .:/app
     ports:
@@ -30,7 +32,10 @@ services:
       - veterinary_udv
 
   nginx:
-    image: nginx:latest
+    container_name: nginx_veterinaria
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
     ports:
       - "80:80"
     volumes:
