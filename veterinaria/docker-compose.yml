@@ -23,7 +23,6 @@ services:
     volumes:
       - .:/app
       - static_volume:/app/static
-    command: /bin/bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -b 0.0.0.0:8000 veterinaria.wsgi:application"
     ports:
       - "8000:8000"
     env_file:
