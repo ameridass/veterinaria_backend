@@ -10,6 +10,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
+    networks:
+      - veterinary_udv
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -24,6 +26,8 @@ services:
       - .env
     depends_on:
       - db
+    networks:
+      - veterinary_udv
 
   nginx:
     image: nginx:latest
@@ -32,9 +36,15 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - static_volume:/app/static
+    networks:
+      - veterinary_udv
     depends_on:
       - api
 
 volumes:
   postgres_data:
   static_volume:
+
+networks:
+  veterinary_udv:
+    driver: bridge
