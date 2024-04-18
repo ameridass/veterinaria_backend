@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework', # Django REST framework
     'veterinaria_api', # App
+    'drf_yasg', # Swagger
 ]
 
 MIDDLEWARE = [
