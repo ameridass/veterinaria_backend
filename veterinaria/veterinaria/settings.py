@@ -30,6 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Define STATIC_ROOT para indicar dónde se recolectarán los archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Application definition
 
